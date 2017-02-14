@@ -4,7 +4,6 @@ addEventListeners()
 
 
 function validateForm(e) {
-    
     try {
         validateMessage();
         copyAddress();

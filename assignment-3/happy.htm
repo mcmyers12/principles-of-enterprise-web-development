@@ -31,39 +31,39 @@
          <fieldset id="message" class="checks">
 			<legend>Message</legend>
 			
-            <input type="checkbox" name="congratulations" id="congratulations" value="congratulations">
+            <input type="checkbox" name="congratulations" id="congratulations" value="on">
             <label for="congratulations">Congratulations!</label>
             
-            <input type="checkbox" name="happyBirthday" id="happyBirthday" value="happyBirthday">
+            <input type="checkbox" name="happyBirthday" id="happyBirthday" value="on">
             <label for="happyBirthday">Happy Birthday!</label>
             
-            <input type="checkbox" name="happyAnniversary" id="happyAnniversary" value="happyAnniversary">
+            <input type="checkbox" name="happyAnniversary" id="happyAnniversary" value="on">
             <label for="happyAnniversary">Happy Anniversary!</label>
             
-            <input type="checkbox" name="iLoveYou" id="iLoveYou" value="iLoveYou">
+            <input type="checkbox" name="iLoveYou" id="iLoveYou" value="on">
             <label for="iLoveYou">I love you!</label>
             
-            <input type="checkbox" name="customMessage" id="customMessage" value="customMessage">
+            <input type="checkbox" name="customMessage" id="customMessage" value="on">
             <label for="customMessage">Custom message:</label>
-            <textarea class="checks" id="customText" name="comments" placeholder="Enter custom message here (max 250 characters)"></textarea>   
+            <textarea class="checks" id="customText" name="CustomText" placeholder="Enter custom message here (max 250 characters)"></textarea>   
          </fieldset>
          
-         <fieldset id="billingAddress" class="text">
+         <fieldset id="billingAddress" class="text" value="billingAddress">
             <legend>Billing Address</legend>
             <label>First Name</label>
-            <input id="billFName" type="text" autofocus required>
+            <input id="billFName" name="BillingFirstName" type="text" autofocus required>
             
             <label>Last Name</label>
-            <input id="billLName" type="text" required>
+            <input id="billLName" name="BillingLastName" type="text" required>
             
             <label>Street Address</label>
-            <input id="billStreet" type="text" required>
+            <input id="billStreet" name="BillingStreet" type="text" required>
             
             <label>City</label>
-            <input id="billCity" type="text" required>
+            <input id="billCity" name="BillingCity" type="text" required>
             
             <label>State</label>
-            <select name="style_and_size">
+            <select name="BillingState" required>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AZ">AZ</option>
@@ -118,34 +118,34 @@
             </select>
             
             <label>Zip</label>
-            <input id="billZip" type="text" required pattern="\d{5}([\-]\d{4})?" title="99999 or 99999-9999" placeholder="99999 or 99999-9999">
+            <input id="billZip" name="BillingZip" type="text" required pattern="\d{5}([\-]\d{4})?" title="99999 or 99999-9999" placeholder="99999 or 99999-9999">
             
             <label>Phone</label>
-            <input id="billPhone" type="tel" required pattern="(\d{3}[\-]\d{3}[\-]\d{4})||(\d{10})" title="999-999-9999 or 9999999999" placeholder="999-999-9999 or 9999999999">         
+            <input id="billPhone" name="BillingPhone" type="tel" required pattern="(\d{3}[\-]\d{3}[\-]\d{4})||(\d{10})" title="999-999-9999 or 9999999999" placeholder="999-999-9999 or 9999999999">         
          </fieldset>
          
          <fieldset id="deliveryAddress" class="text">
             <legend>Delivery Address</legend>
             
             <div class="checks">
-                <input type="checkbox" name="sameAddress" id="sameAddress" value="sameAddress">
+                <input type="checkbox" name="SameAddress" id="sameAddress" value="on">
                 <label for="sameAddress">Same as billing address</label>
             </div>
             
             <label>First Name</label>
-            <input id="delivFName" type="text">
+            <input id="delivFName" name="DeliveryFirstName" type="text" required>
             
             <label>Last Name</label>
-            <input id="delivLName" type="text">
+            <input id="delivLName" name="DeliveryLastName" type="text" required>
             
             <label>Street Address</label>
-            <input id="delivStreet" type="text">
+            <input id="delivStreet" name="DeliveryStreet" type="text" required>
             
             <label>City</label>
-            <input id="delivCity" type="text">
+            <input id="delivCity" name="DeliveryCity" type="text" required>
             
             <label>State</label>
-            <select name="state">
+            <select name="DeliveryState" required>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AZ">AZ</option>
@@ -200,44 +200,39 @@
             </select>
             
             <label>Zip</label>
-            <input id="delivZip" type="text" pattern="\d{5}([\-]\d{4})?" title="99999 or 99999-9999" placeholder="99999 or 99999-9999">
+            <input id="delivZip" type="text" name="DeliveryZip" pattern="\d{5}([\-]\d{4})?" title="99999 or 99999-9999" placeholder="99999 or 99999-9999" required>
             
             <label>Phone</label>
-            <input id="delivPhone" type="tel" pattern="(\d{3}[\-]\d{3}[\-]\d{4})||(\d{10})" title="999-999-9999 or 9999999999" placeholder="999-999-9999 or 9999999999">
+            <input id="delivPhone" type="tel" name="DeliveryPhone" pattern="(\d{3}[\-]\d{3}[\-]\d{4})||(\d{10})" title="999-999-9999 or 9999999999" placeholder="999-999-9999 or 9999999999" required>
          </fieldset>
-         
-         <!--fieldset id="deliveryDate" class="checks">
-            <legend>Delivery Date</legend>            
-            <input type="date" name="date" required>
-         </fieldset-->
+
          <fieldset id="deliveryDate" class="checks">
             <legend>Delivery Date</legend>
-            <input type="date">
+            <input type="date" name="DeliveryDate" required>
          </fieldset>
          
          <fieldset id="paymentInfo" class="text">
             <legend>Payment Info</legend>
             
-            <div  class="inline">
-                <input type="radio" name="card" id="visa" value="visa">
+            <div class="inline">
+                <input type="radio" name="PaymentType" id="visa" value="visa" required>
                 <label for="visa">Visa</label>
                 
-                <input type="radio" name="card" id="mastercard" value="mastercard">
+                <input type="radio" name="PaymentType" id="mastercard" value="mastercard">
                 <label for="mastercard">Master Card</label>
                 
-                <input type="radio" name="card" id="discover" value="discover">
+                <input type="radio" name="PaymentType" id="discover" value="discover">
                 <label for="discover">Discover</label>
                 
-                <input type="radio" name="card" id="americanExpress" value="americanExpress">
+                <input type="radio" name="PaymentType" id="americanExpress" value="americanExpress">
                 <label for="americanExpress">American Express</label>
             </div>
     
-    <!--TODO put back required-->
             <label>Card #</label>
-            <input id="ccNum" type="text" pattern="[0-9]{1,}" title="Numeric input only">
+            <input id="ccNum" name="CardNumber" type="text" pattern="[0-9]{1,}" title="Numeric input only" required>
             
             <label>Expiration</label>
-            <select name='expireMM' id='expireMM'>
+            <select name='ExpMonth' id='expireMM' required>
                 <option value='01'>01</option>
                 <option value='02'>02</option>
                 <option value='03'>03</option>
@@ -251,7 +246,7 @@
                 <option value='11'>11</option>
                 <option value='12'>12</option>
             </select> 
-            <select name='expireYY' id='expireYY'>
+            <select name='ExpYear' id='expireYY' required>
                 <option value='17'>2017</option>
                 <option value='18'>2018</option>
                 <option value='19'>2019</option>
@@ -266,7 +261,7 @@
             </select> 
             
             <label>CVV</label>
-            <input id="cvv" type="text" pattern="[0-9]{1,4}" title="1-4 digits">
+            <input id="cvv" name="CVV" type="text" pattern="[0-9]{1,4}" title="1-4 digits" required>
          </fieldset>
          
          <fieldset id="createAccount" class="text">
@@ -274,13 +269,13 @@
             <p>To be able to access your purchase history and make changes to your order, enter a name and password to create an account.</p>
             
             <label>Username</label>
-            <input type="text" name="username" id="username" required pattern="[a-zA-Z0-9]{6,}" title="6+ letters or numbers" placeholder="6+ letters or numbers">
+            <input type="text" name="NewUsername" id="username"  pattern="[a-zA-Z0-9]{6,}" title="6+ letters or numbers" placeholder="6+ letters or numbers">
             
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" required pattern="[a-zA-Z0-9]{6,}" title="6+ letters or numbers" placeholder="6+ letters or numbers">
+            <input type="password" name="Password1" id="password"  pattern="[a-zA-Z0-9]{6,}" title="6+ letters or numbers" placeholder="6+ letters or numbers">
     
             <label for="verifyPassword">Password (verify)</label>
-            <input type="password" name="verify" id="verifyPassword" required>
+            <input type="password" name="Password2" id="verifyPassword" >
 
          </fieldset>
          
