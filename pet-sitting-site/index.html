@@ -54,7 +54,7 @@
 			<div class="text-center">
 				<br><br><br><br><br><br><br><br><br>
 				<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.3s">
-					<p>Send your pet to a loving home</p>
+					<p>&hearts;Send your pet to a loving home&hearts;</p>
 				</div>
 			</div>
 		</div>
@@ -97,7 +97,7 @@
 				<div class="text-center">
 					<h3>Location</h3>
 					<p>Columbia, MD</p>
-					<h4>Insert Map</h4>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98948.89142360754!2d-76.93512308321601!3d39.19397532769041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7dfb06369a051%3A0xf0d6bd65b687635d!2sColumbia%2C+MD!5e0!3m2!1sen!2sus!4v1488143293927" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</div>
 			</div>
 		</div>
@@ -107,7 +107,7 @@
 		<div class="container">
 			<div class="text-center">
 				<h3>Gallery</h3>
-				<p>Photos from past pet sitting</p>
+				<p>Photos and videos from past pet sitting</p>
 			</div>
 			<div class="row">
 				<figure class="effect-chico">						
@@ -159,16 +159,18 @@
 					</figure>	
 					<figure class="effect-chico">
 						<div class="col-md-3 wow fadeInDown" data-wow-offset="0" data-wow-delay="0.3s">
-							<a href="img/7.jpg" class="flipLightBox">
-							<img src="img/7.jpg" class="img-responsive" alt="">
+							<a href="img/8.jpg" class="flipLightBox">
+							<img src="img/8.jpg" class="img-responsive" alt="">
 							</a>
 						</div>
 					</figure>	
 					<figure class="effect-chico">
 						<div class="col-md-3 wow fadeInDown" data-wow-offset="0" data-wow-delay="0.3s">
-							<a href="img/8.jpg" class="flipLightBox">
-							<img src="img/8.jpg" class="img-responsive" alt="">
-							</a>
+							<a href="video/dog.m4v" class="flipLightBox">
+							<video width="400" controls class="img-responsive" alt="">
+                                <source src="video/dog.m4v" type="video/mp4">
+                            </video>
+                            </a>
 						</div>
 					</figure>
 				</div>
@@ -223,8 +225,7 @@
 		<div id="contact">
 			<div class="container">
 				<div class="text-center">
-					<h3>Contact Me</h3>
-					<p>Contact me at any time for more information</p>
+					<h3>Contact Information and Booking Requests</h3>
 				</div>
 			</div>
 			<div class="container">
@@ -244,25 +245,32 @@
                         <div id="errormessage"></div>
                         <form action="" method="post" role="form" class="contactForm">
                                 <div class="form-group">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <p>Dropoff Date</p>
+                                    <input type="date" name="DeliveryDate" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <p>Pickup Date</p>
+                                    <input type="date" name="DeliveryDate" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required/>
                                         <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required/>
                                         <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                        <div class="validation"></div>
-                                </div>
-                                <div class="form-group">
-                                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Additional Information"></textarea>
                                         <div class="validation"></div>
                                 </div>
                             
                             <button type="submit" class="btn btn-theme pull-left">REQUEST BOOKING</button>
                         </form>
 					</div>	
+					<div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.8s">
+					    <img src="img/paw.png" width="350px" alt="">
+					</div>
 				</div>
 			</div>
 		</div><!--/#contact-->						
