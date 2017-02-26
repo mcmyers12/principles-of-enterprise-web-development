@@ -33,7 +33,7 @@ h5,
 h6 {
     font-weight:500; 
     font-family:'Roboto';
-	color:#000;
+	color:#fff;
 }
 
 h1{
@@ -134,7 +134,7 @@ hr {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  background: #2bb8ff;
+  background: #05085e;
   padding: 21px 0;
   padding-bottom: 0;
 }
@@ -162,13 +162,13 @@ hr {
 }
 
 .navbar-fixed-top .navbar-nav > li > a:hover{
-	background: #0BA9F9;	
+	background: #05085e;	
 	color:#fff;
 }
 
 .navbar-fixed-top {
   border: none;
-  background: #0BA9F9;
+  background: #05085e;
 }
 
 .navbar-fixed-top .navbar-brand {
@@ -183,7 +183,7 @@ hr {
 .navbar-fixed-top .navbar-nav > .open > a,
 .navbar-fixed-top .navbar-nav > .open > a:hover,
 .navbar-fixed-top .navbar-nav > .open > a:focus {
-  background-color: #2bb8ff;
+  background-color: #05085e;
   color: #fff;
 }
 
@@ -208,7 +208,7 @@ hr {
 }
 
 #carousel-slider .carousel-indicators li {
-  border: 1px solid #ffbd20;
+  border: 1px solid #05085e;
 }
 
 #carousel-slider a i {
@@ -224,9 +224,9 @@ hr {
 }
 
 #carousel-slider a i:hover {
-  background:#0BA9F9;
+  background:#05085e;
   color:#fff;
-  border: 1px solid #0BA9F9;
+  border: 1px solid #05085e;
 }
 
 #carousel-slider 
@@ -265,7 +265,7 @@ hr {
 
 .carousel-caption  h2 {
 	font-size:60px;
-	color: #0BA9F9;
+	color: #05085e;
 }
 
 .carousel-caption  h2 span {
@@ -548,17 +548,17 @@ figure.effect-chico:hover img {
 
 .pricing-area .heading-one, 
 .pricing-area .price-one .plan-action .btn-primary {
-  background: #e24f43
+  background: #9396ea
 }
 
 .pricing-area .heading-two, 
 .pricing-area .price-two .plan-action .btn-primary {
-  background:#27AE60;
+  background:#6467ba;
 }
 
 .pricing-area .heading-three,
 .pricing-area .price-three .plan-action .btn-primary {
-  background: #f39c12;
+  background: #151aa5;
 }
 
 .pricing-area .heading-four, 
@@ -759,7 +759,7 @@ footer {
 }
 
 #contact h2 {
-	color:#000;
+	color:#fff;
 	margin-bottom:30px;
 	font-size:25px;
 }
