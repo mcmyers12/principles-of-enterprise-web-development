@@ -17,11 +17,6 @@ $(document).ready(function(){
 					if (xhr.status == 200) {						
 						var jsonData = JSON.parse(xhr.responseText);
 						
-						/*var optionsHTML = ''
-						for(var i= 0; i < jsonData[rootElement].length; i++){
-							optionsHTML+='<option value="'+jsonData[rootElement][i].code+'">'+jsonData[rootElement][i].name+'</option>'
-						}*/
-						
 						aboutMeText1.innerHTML += jsonData["about-me-text-1"];
 						aboutMeText2.innerHTML += jsonData["about-me-text-2"];
 						myAddress.innerHTML += jsonData["my-address"];
@@ -30,10 +25,6 @@ $(document).ready(function(){
 						
 					} else {
 						console.log(xhr.statusText);
-						
-						// Show the error on the Web page
-                        tempContainer.innerHTML += '<p class="error">Error getting ' + 
-                                      target.name + ": "+ xhr.statusText + ",code: "+ xhr.status + "</p>";
 					}
 				}
 			}
@@ -43,6 +34,23 @@ $(document).ready(function(){
         getData('data/pet-sitting-site-data.json');
     })();
     
+    /* Set up bootstrap datepicker */
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+    
+    $(".login-item").hide();
+    
+    $("#login-button").click(function(){ $(".login-item").show();
+    });
     
 });
 /*
