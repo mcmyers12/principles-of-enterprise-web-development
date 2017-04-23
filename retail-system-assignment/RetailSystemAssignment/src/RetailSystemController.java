@@ -19,9 +19,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,6 +32,8 @@ import javafx.stage.Window;
 import javafx.util.Callback;
 
 public class RetailSystemController implements Initializable {
+
+	private RetailSystemDatabase rsdb = new RetailSystemDatabase();
 
 	@FXML
 	private MenuBar menuBar;
@@ -79,14 +84,37 @@ public class RetailSystemController implements Initializable {
 	private Button cancelNewMerchandise;
 
 	@FXML
+	private ToggleGroup genderToggleGroup;
+
+	@FXML
+	private TextField lastNameInput;
+
+	@FXML
+	private TextField streetAddressInput;
+
+	@FXML
+	private TextField cityInput;
+
+	@FXML
+	private TextField zipCodeInput;
+
+	@FXML
 	private TableView<ObservableList<StringProperty>> table;
 
 	@FXML
 	private MenuItem closeWindow;
 
+	@FXML
+	private TextField firstNameInput;
+
+	@FXML
+	private Label addCustomerLabel;
+
 	@Override // Called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		System.out.println(fxmlFileLocation);
+		initializeDB();
+
 		if (fxmlFileLocation.toString().contains(("RetailSystem.fxml"))) {
 
 		}
@@ -96,9 +124,41 @@ public class RetailSystemController implements Initializable {
 
 	}
 
+	private void initializeDB() {
+		rsdb.createRetailSystemDB();
+		rsdb.createDBTables();
+	}
+
 	@FXML
 	private void handleAddNewCustomer(ActionEvent event) throws IOException {
 		System.out.println("Add new customer");
+
+		String firstName = firstNameInput.getText();
+		String lastName = lastNameInput.getText();
+		String streetAddress = streetAddressInput.getText();
+		String city = cityInput.getText();
+		String state = stateChoiceBox.getValue();
+		if (state == null) {
+			state = "";
+		}
+		String zipcode = zipCodeInput.getText();
+
+		String gender;
+		RadioButton selectedRadioButton = (RadioButton) genderToggleGroup.getSelectedToggle();
+		if (selectedRadioButton == null) {
+			gender = "";
+		} else {
+			gender = selectedRadioButton.getText();
+		}
+
+		System.out.println("Adding customer to db: ");
+		System.out.println("\t" + firstName + " " + lastName + " " + streetAddress + " " + city + " " + state + " "
+				+ zipcode + " " + gender + " ");
+		rsdb.insertIntoCustomerTable(firstName, lastName, streetAddress, city, state, zipcode, gender);
+
+		System.out.println("label text: " + addCustomerLabel.getText());
+		addCustomerLabel.setText("Customer added with values: " + firstName + ", " + lastName + ", " + streetAddress
+				+ ", " + city + ", " + state + ", " + zipcode + ", " + gender + " ");
 	}
 
 	@FXML
