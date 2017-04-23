@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -9,9 +10,9 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="347.0" minHeight="10.0" prefHeight="331.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="75.0" minHeight="1.0" prefHeight="2.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <MenuBar fx:id="menuBar">
@@ -25,8 +26,8 @@
                <items>
                   <Menu mnemonicParsing="false" text="Customer">
                      <items>
-                        <MenuItem fx:id="addNewCustomer" mnemonicParsing="false" text="Add New" />
-                        <MenuItem fx:id="listAllCustomers" mnemonicParsing="false" text="List All" />
+                        <MenuItem fx:id="addNewCustomer" mnemonicParsing="false" onAction="#handleAddNewCustomer" text="Add New" />
+                        <MenuItem fx:id="listAllCustomers" mnemonicParsing="false" onAction="#handleListAllCustomers" text="List All" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Employee">
@@ -38,12 +39,18 @@
                   <Menu mnemonicParsing="false" text="Merchandise">
                      <items>
                         <MenuItem fx:id="addNewMerchandise" mnemonicParsing="false" text="Add New" />
-                        <MenuItem fx:id="listAllMerchandise" mnemonicParsing="false" text="List All" />
+                        <MenuItem fx:id="listAllMerchandise" mnemonicParsing="false" onAction="#handleListAllMerchandise" text="List All" />
                      </items>
                   </Menu>
                </items>
           </Menu>
         </menus>
       </MenuBar>
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
    </children>
 </GridPane>
