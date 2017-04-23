@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="RetailSystemController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <MenuBar fx:id="menuBar">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+               <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Data">
+               <items>
+                  <Menu mnemonicParsing="false" text="Customer">
+                     <items>
+                        <MenuItem fx:id="addNewCustomer" mnemonicParsing="false" text="Add New" />
+                        <MenuItem fx:id="listAllCustomers" mnemonicParsing="false" text="List All" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Employee">
+                     <items>
+                        <MenuItem fx:id="addNewEmployee" mnemonicParsing="false" text="Add New" />
+                        <MenuItem fx:id="listAllEmployees" mnemonicParsing="false" text="List All" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Merchandise">
+                     <items>
+                        <MenuItem fx:id="addNewMerchandise" mnemonicParsing="false" text="Add New" />
+                        <MenuItem fx:id="listAllMerchandise" mnemonicParsing="false" text="List All" />
+                     </items>
+                  </Menu>
+               </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</GridPane>
