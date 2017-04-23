@@ -9,7 +9,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -64,26 +63,6 @@ public class RetailSystemController implements Initializable {
 		System.out.println(fxmlFileLocation);
 		if (fxmlFileLocation.toString().contains(("RetailSystem.fxml"))) {
 
-			addNewCustomer.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					System.out.println("CLICK");
-
-					Stage stage = new Stage();
-					Parent root;
-					try {
-						root = FXMLLoader.load(getClass().getResource("AddNewCustomer.fxml"));
-						stage.setScene(new Scene(root));
-						stage.setTitle("My modal window");
-						stage.initModality(Modality.APPLICATION_MODAL);
-						// stage.initOwner(addNewCustomerOk.getScene().getWindow());
-						stage.showAndWait();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
-				}
-			});
 		}
 		if (fxmlFileLocation.toString().contains(("AddNewCustomer.fxml"))) {
 			initializeStateChoiceBoxOptions(stateChoiceBox);
@@ -99,10 +78,52 @@ public class RetailSystemController implements Initializable {
 	}
 
 	@FXML
+	private void popUpAddNew(ActionEvent event) throws IOException {
+
+		System.out.println("Pop up add new");
+
+		Stage stage = new Stage();
+		Parent root;
+		try {
+			if (event.getSource() == addNewEmployee) {
+				root = FXMLLoader.load(getClass().getResource("AddNewEmployee.fxml"));
+				stage.setScene(new Scene(root));
+				stage.setTitle("Add New Employee");
+			} else if (event.getSource() == addNewCustomer) {
+				root = FXMLLoader.load(getClass().getResource("AddNewCustomer.fxml"));
+				stage.setScene(new Scene(root));
+				stage.setTitle("Add New Customer");
+			} else if (event.getSource() == addNewMerchandise) {
+				root = FXMLLoader.load(getClass().getResource("AddNewMerchandise.fxml"));
+				stage.setScene(new Scene(root));
+				stage.setTitle("Add New Merchandise");
+			}
+			stage.initModality(Modality.APPLICATION_MODAL);
+			// stage.initOwner(addNewCustomerOk.getScene().getWindow());
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@FXML
 	private void handleListAllCustomers(ActionEvent event) throws IOException {
 		// if (event.getSource() == addNewCustomerOk) {
 		// }
-		populateCustomerTable();
+		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
+		String[] dataValues = { "1", "2", "3", "4", "5", "6", "7" };
+		populateTable(headerValues, dataValues);
+		System.out.println("List all customers");
+	}
+
+	@FXML
+	private void handleListAllEmployees(ActionEvent event) throws IOException {
+		// if (event.getSource() == addNewCustomerOk) {
+		// }
+		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
+		String[] dataValues = { "11", "22", "33", "4", "5", "6", "7" };
+		populateTable(headerValues, dataValues);
 		System.out.println("List all customers");
 	}
 
@@ -110,46 +131,21 @@ public class RetailSystemController implements Initializable {
 	private void handleListAllMerchandise(ActionEvent event) throws IOException {
 		// if (event.getSource() == addNewCustomerOk) {
 		// }
-		populateMerchandiseTable();
+		String[] headerValues = { "Name", "Price", "Description" };
+		String[] dataValues = { "1", "2", "3" };
+		populateTable(headerValues, dataValues);
 		System.out.println("List all merchandise");
 	}
 
-	private void populateCustomerTable() {
+	private void populateTable(String[] headerValues, String[] dataValues) {
 		table.getItems().clear();
 		table.getColumns().clear();
 		table.setPlaceholder(new Label("Loading..."));
 
-		final String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode",
-				"Gender" };
 		for (int column = 0; column < headerValues.length; column++) {
 			table.getColumns().add(createColumn(column, headerValues[column]));
 		}
 
-		final String[] dataValues = { "1", "2", "3", "4", "5", "6", "7" };
-		// Add additional columns if necessary:
-		for (int columnIndex = table.getColumns().size(); columnIndex < dataValues.length; columnIndex++) {
-			table.getColumns().add(createColumn(columnIndex, ""));
-		}
-		// Add data to table:
-		ObservableList<StringProperty> data = FXCollections.observableArrayList();
-		for (String value : dataValues) {
-			data.add(new SimpleStringProperty(value));
-		}
-		table.getItems().add(data);
-
-	}
-
-	private void populateMerchandiseTable() {
-		table.getItems().clear();
-		table.getColumns().clear();
-		table.setPlaceholder(new Label("Loading..."));
-
-		final String[] headerValues = { "Name", "Price", "Description" };
-		for (int column = 0; column < headerValues.length; column++) {
-			table.getColumns().add(createColumn(column, headerValues[column]));
-		}
-
-		final String[] dataValues = { "1", "2", "3" };
 		// Add additional columns if necessary:
 		for (int columnIndex = table.getColumns().size(); columnIndex < dataValues.length; columnIndex++) {
 			table.getColumns().add(createColumn(columnIndex, ""));
@@ -199,55 +195,6 @@ public class RetailSystemController implements Initializable {
 				"Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin",
 				"Wyoming");
 		choiceBox.setItems(interestRateOptions);
-	}
-
-	public class PersonData {
-		private String firstName;
-		private String lastName;
-		private String streetAddress;
-		private String city;
-		private String state;
-		private String zipCode;
-		private String gender;
-
-		public PersonData(String firstName, String lastName, String streetAddress, String city, String state,
-				String zipCode, String gender) {
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.streetAddress = streetAddress;
-			this.city = city;
-			this.state = state;
-			this.zipCode = zipCode;
-			this.gender = gender;
-		}
-
-		public String getFirstName() {
-			return firstName;
-		}
-
-		public String getLastName() {
-			return lastName;
-		}
-
-		public String getStreetAddress() {
-			return streetAddress;
-		}
-
-		public String getCity() {
-			return city;
-		}
-
-		public String getState() {
-			return state;
-		}
-
-		public String getZipCode() {
-			return zipCode;
-		}
-
-		public String getGender() {
-			return gender;
-		}
 	}
 
 }

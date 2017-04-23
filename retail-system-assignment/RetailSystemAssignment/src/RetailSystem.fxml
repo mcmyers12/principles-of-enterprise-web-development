@@ -26,19 +26,19 @@
                <items>
                   <Menu mnemonicParsing="false" text="Customer">
                      <items>
-                        <MenuItem fx:id="addNewCustomer" mnemonicParsing="false" onAction="#handleAddNewCustomer" text="Add New" />
+                        <MenuItem fx:id="addNewCustomer" mnemonicParsing="false" onAction="#popUpAddNew" text="Add New" />
                         <MenuItem fx:id="listAllCustomers" mnemonicParsing="false" onAction="#handleListAllCustomers" text="List All" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Employee">
                      <items>
-                        <MenuItem fx:id="addNewEmployee" mnemonicParsing="false" text="Add New" />
-                        <MenuItem fx:id="listAllEmployees" mnemonicParsing="false" text="List All" />
+                        <MenuItem fx:id="addNewEmployee" mnemonicParsing="false" onAction="#popUpAddNew" text="Add New" />
+                        <MenuItem fx:id="listAllEmployees" mnemonicParsing="false" onAction="#handleListAllEmployees" text="List All" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Merchandise">
                      <items>
-                        <MenuItem fx:id="addNewMerchandise" mnemonicParsing="false" text="Add New" />
+                        <MenuItem fx:id="addNewMerchandise" mnemonicParsing="false" onAction="#popUpAddNew" text="Add New" />
                         <MenuItem fx:id="listAllMerchandise" mnemonicParsing="false" onAction="#handleListAllMerchandise" text="List All" />
                      </items>
                   </Menu>
@@ -46,11 +46,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
    </children>
 </GridPane>
