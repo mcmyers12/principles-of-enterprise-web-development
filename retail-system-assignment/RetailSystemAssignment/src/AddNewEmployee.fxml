@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RetailSystemController">
+<GridPane fx:id="newEmployeeGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RetailSystemController">
    <children>
       <Label text="Employee Information">
          <GridPane.margin>
@@ -19,7 +19,7 @@
          </GridPane.margin>
       </Label>
       <Button fx:id="addNewCustomerOk" mnemonicParsing="false" onAction="#handleAddNewCustomer" text="Ok" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="9">
+      <Button fx:id="cancelNewEmployee" mnemonicParsing="false" onAction="#close" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="9">
          <GridPane.margin>
             <Insets left="70.0" right="10.0" />
          </GridPane.margin>

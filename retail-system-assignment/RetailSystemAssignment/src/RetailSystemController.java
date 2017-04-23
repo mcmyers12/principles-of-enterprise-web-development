@@ -22,8 +22,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 public class RetailSystemController implements Initializable {
@@ -56,7 +58,31 @@ public class RetailSystemController implements Initializable {
 	private ChoiceBox<String> stateChoiceBox;
 
 	@FXML
+	private GridPane outerGrid;
+
+	@FXML
+	private GridPane newCustomerGrid;
+
+	@FXML
+	private GridPane newEmployeeGrid;
+
+	@FXML
+	private GridPane newMerchandiseGrid;
+
+	@FXML
+	private Button cancelNewCustomer;
+
+	@FXML
+	private Button cancelNewEmployee;
+
+	@FXML
+	private Button cancelNewMerchandise;
+
+	@FXML
 	private TableView<ObservableList<StringProperty>> table;
+
+	@FXML
+	private MenuItem closeWindow;
 
 	@Override // Called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -72,14 +98,34 @@ public class RetailSystemController implements Initializable {
 
 	@FXML
 	private void handleAddNewCustomer(ActionEvent event) throws IOException {
-		// if (event.getSource() == addNewCustomerOk) {
-		// }
 		System.out.println("Add new customer");
 	}
 
 	@FXML
-	private void popUpAddNew(ActionEvent event) throws IOException {
+	private void close(ActionEvent event) throws IOException {
+		System.out.println("Close");
 
+		if (event.getSource() == closeWindow) {
+			Window stage = outerGrid.getScene().getWindow();
+			stage.hide();
+		}
+
+		if (event.getSource() == cancelNewCustomer) {
+			Window stage = newCustomerGrid.getScene().getWindow();
+			stage.hide();
+		}
+		if (event.getSource() == cancelNewEmployee) {
+			Window stage = newEmployeeGrid.getScene().getWindow();
+			stage.hide();
+		}
+		if (event.getSource() == cancelNewMerchandise) {
+			Window stage = newMerchandiseGrid.getScene().getWindow();
+			stage.hide();
+		}
+	}
+
+	@FXML
+	private void popUpAddNew(ActionEvent event) throws IOException {
 		System.out.println("Pop up add new");
 
 		Stage stage = new Stage();
@@ -109,8 +155,6 @@ public class RetailSystemController implements Initializable {
 
 	@FXML
 	private void handleListAllCustomers(ActionEvent event) throws IOException {
-		// if (event.getSource() == addNewCustomerOk) {
-		// }
 		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
 		String[] dataValues = { "1", "2", "3", "4", "5", "6", "7" };
 		populateTable(headerValues, dataValues);
@@ -119,8 +163,6 @@ public class RetailSystemController implements Initializable {
 
 	@FXML
 	private void handleListAllEmployees(ActionEvent event) throws IOException {
-		// if (event.getSource() == addNewCustomerOk) {
-		// }
 		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
 		String[] dataValues = { "11", "22", "33", "4", "5", "6", "7" };
 		populateTable(headerValues, dataValues);
@@ -129,8 +171,6 @@ public class RetailSystemController implements Initializable {
 
 	@FXML
 	private void handleListAllMerchandise(ActionEvent event) throws IOException {
-		// if (event.getSource() == addNewCustomerOk) {
-		// }
 		String[] headerValues = { "Name", "Price", "Description" };
 		String[] dataValues = { "1", "2", "3" };
 		populateTable(headerValues, dataValues);
