@@ -154,6 +154,9 @@ public class RetailSystemController implements Initializable {
 	@FXML
 	private Label addEmployeeLabel;
 
+	@FXML
+	private Label tableLabel;
+
 	@Override // Called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		System.out.println(fxmlFileLocation);
@@ -199,7 +202,6 @@ public class RetailSystemController implements Initializable {
 				+ zipcode + " " + gender + " ");
 		rsdb.insertIntoCustomerTable(firstName, lastName, streetAddress, city, state, zipcode, gender);
 
-		System.out.println("label text: " + addCustomerLabel.getText());
 		addCustomerLabel.setText("Customer added with values: " + firstName + ", " + lastName + ", " + streetAddress
 				+ ", " + city + ", " + state + ", " + zipcode + ", " + gender + " ");
 	}
@@ -216,7 +218,6 @@ public class RetailSystemController implements Initializable {
 		System.out.println("\t" + name + " " + price + " " + description);
 		rsdb.insertIntoMerchandiseTable(name, price, description);
 
-		System.out.println("label text: " + addMerchandiseLabel.getText());
 		addMerchandiseLabel.setText("Merchandise added with values: " + name + ", " + price + ", " + description);
 	}
 
@@ -247,7 +248,6 @@ public class RetailSystemController implements Initializable {
 				+ zipcode + " " + gender + " ");
 		rsdb.insertIntoEmployeeTable(firstName, lastName, streetAddress, city, state, zipcode, gender);
 
-		System.out.println("label text: " + addEmployeeLabel.getText());
 		addEmployeeLabel.setText("Employee added with values: " + firstName + ", " + lastName + ", " + streetAddress
 				+ ", " + city + ", " + state + ", " + zipcode + ", " + gender + " ");
 	}
@@ -307,6 +307,7 @@ public class RetailSystemController implements Initializable {
 	@FXML
 	private void handleListAllCustomers(ActionEvent event) throws IOException {
 		System.out.println("List all customers");
+		tableLabel.setText("CUSTOMER DATA");
 
 		String[] headerValues = { "First Name", "Last Name", "StreetAddress", "City", "State", "Zipcode", "Gender" };
 		populateTableColumns(headerValues);
@@ -326,8 +327,6 @@ public class RetailSystemController implements Initializable {
 				String[] dataValues = { firstName, lastName, streetAddress, city, state, zipcode, gender };
 
 				populateTableDataRow(dataValues);
-
-				System.out.println("found: " + firstName + " " + lastName);
 			}
 		} catch (Exception e) {
 
@@ -337,6 +336,7 @@ public class RetailSystemController implements Initializable {
 	@FXML
 	private void handleListAllEmployees(ActionEvent event) throws IOException {
 		System.out.println("List all employees");
+		tableLabel.setText("EMPLOYEE DATA");
 
 		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
 		populateTableColumns(headerValues);
@@ -356,8 +356,6 @@ public class RetailSystemController implements Initializable {
 				String[] dataValues = { firstName, lastName, streetAddress, city, state, zipcode, gender };
 
 				populateTableDataRow(dataValues);
-
-				System.out.println("found: " + firstName + " " + lastName);
 			}
 		} catch (Exception e) {
 
@@ -367,6 +365,7 @@ public class RetailSystemController implements Initializable {
 	@FXML
 	private void handleListAllMerchandise(ActionEvent event) throws IOException {
 		System.out.println("List all merchandise");
+		tableLabel.setText("MERCHANDISE DATA");
 
 		String[] headerValues = { "Name", "Price", "Description" };
 		populateTableColumns(headerValues);
@@ -382,8 +381,6 @@ public class RetailSystemController implements Initializable {
 				String[] dataValues = { name, price, description };
 
 				populateTableDataRow(dataValues);
-
-				System.out.println("found: " + name + " " + price);
 			}
 		} catch (Exception e) {
 

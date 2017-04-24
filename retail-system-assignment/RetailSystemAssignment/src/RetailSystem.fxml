@@ -11,6 +11,7 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="347.0" minHeight="10.0" prefHeight="331.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="75.0" minHeight="1.0" prefHeight="2.0" vgrow="SOMETIMES" />
   </rowConstraints>
@@ -46,6 +47,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+      <Label fx:id="tableLabel" text="Select from the Data menu to populate the table" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
    </children>
 </GridPane>
