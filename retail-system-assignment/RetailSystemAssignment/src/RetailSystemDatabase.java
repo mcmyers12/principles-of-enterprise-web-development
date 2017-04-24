@@ -2,25 +2,28 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RetailSystemDatabase {
 	static Connection conn;
 
-	public static void main(String[] args) {
-		RetailSystemDatabase rsdb = new RetailSystemDatabase();
-
-		rsdb.createRetailSystemDB();
-		rsdb.createDBTables();
-		rsdb.insertIntoEmployeeTable("miranda", "myers", "9902 Deer Run", "Laurel", "Maryland", "99292", "Female");
-		rsdb.insertIntoCustomerTable("danny", "oliden", "9902 Deer Run", "Laurel", "Maryland", "99292", "Male");
-		rsdb.insertIntoMerchandiseTable("Computer", "$200", "Cool computer");
-	}
+	// public static void main(String[] args) {
+	// RetailSystemDatabase rsdb = new RetailSystemDatabase();
+	//
+	// rsdb.createRetailSystemDB();
+	// rsdb.createDBTables();
+	// rsdb.insertIntoEmployeeTable("miranda", "myers", "9902 Deer Run",
+	// "Laurel", "Maryland", "99292", "Female");
+	// rsdb.insertIntoCustomerTable("danny", "oliden", "9902 Deer Run",
+	// "Laurel", "Maryland", "99292", "Male");
+	// rsdb.insertIntoMerchandiseTable("Computer", "$200", "Cool computer");
+	// }
 
 	public void createRetailSystemDB() {
 		try {
 			String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-			String dbName = "RetailSystemDB";
+			String dbName = "RetailSystemDBMirandaMyers";
 			String connectionURL = "jdbc:derby:" + dbName + ";create=true";
 			Class.forName(driver);
 			conn = DriverManager.getConnection(connectionURL);
@@ -29,6 +32,20 @@ public class RetailSystemDatabase {
 			e.printStackTrace();
 		}
 
+	}
+
+	public ResultSet getTableData(String tableName) {
+		try {
+			String selectString = "SELECT * FROM " + tableName;
+			Statement stmt = conn.createStatement();
+			ResultSet tableData = stmt.executeQuery(selectString);
+
+			return tableData;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	public void createDBTables() {

@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -23,6 +24,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
@@ -110,18 +112,59 @@ public class RetailSystemController implements Initializable {
 	@FXML
 	private Label addCustomerLabel;
 
+	@FXML
+	private TextField cityEmInput;
+
+	@FXML
+	private ChoiceBox<String> stateChoiceBoxEm;
+
+	@FXML
+	private TextField lastNameEmInput;
+
+	@FXML
+	private TextField zipCodeEmInput;
+
+	@FXML
+	private TextField firstNameEmInput;
+
+	@FXML
+	private TextField streetAddressEmInput;
+
+	@FXML
+	private ToggleGroup genderToggleGroupEm;
+
+	@FXML
+	private Button addNewEmployeeOk;
+
+	@FXML
+	private TextField priceInput;
+
+	@FXML
+	private TextArea descriptionInput;
+
+	@FXML
+	private TextField nameInput;
+
+	@FXML
+	private Button addNewMerchandiseOk;
+
+	@FXML
+	private Label addMerchandiseLabel;
+
+	@FXML
+	private Label addEmployeeLabel;
+
 	@Override // Called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		System.out.println(fxmlFileLocation);
 		initializeDB();
 
-		if (fxmlFileLocation.toString().contains(("RetailSystem.fxml"))) {
-
-		}
 		if (fxmlFileLocation.toString().contains(("AddNewCustomer.fxml"))) {
 			initializeStateChoiceBoxOptions(stateChoiceBox);
 		}
-
+		if (fxmlFileLocation.toString().contains(("AddNewEmployee.fxml"))) {
+			initializeStateChoiceBoxOptions(stateChoiceBoxEm);
+		}
 	}
 
 	private void initializeDB() {
@@ -158,6 +201,54 @@ public class RetailSystemController implements Initializable {
 
 		System.out.println("label text: " + addCustomerLabel.getText());
 		addCustomerLabel.setText("Customer added with values: " + firstName + ", " + lastName + ", " + streetAddress
+				+ ", " + city + ", " + state + ", " + zipcode + ", " + gender + " ");
+	}
+
+	@FXML
+	private void handleAddNewMerchandise(ActionEvent event) throws IOException {
+		System.out.println("Add new merchandise");
+
+		String name = nameInput.getText();
+		String price = priceInput.getText();
+		String description = descriptionInput.getText();
+
+		System.out.println("Adding merchandise to db: ");
+		System.out.println("\t" + name + " " + price + " " + description);
+		rsdb.insertIntoMerchandiseTable(name, price, description);
+
+		System.out.println("label text: " + addMerchandiseLabel.getText());
+		addMerchandiseLabel.setText("Merchandise added with values: " + name + ", " + price + ", " + description);
+	}
+
+	@FXML
+	private void handleAddNewEmployee(ActionEvent event) throws IOException {
+		System.out.println("Add new employee");
+
+		String firstName = firstNameEmInput.getText();
+		String lastName = lastNameEmInput.getText();
+		String streetAddress = streetAddressEmInput.getText();
+		String city = cityEmInput.getText();
+		String state = stateChoiceBoxEm.getValue();
+		if (state == null) {
+			state = "";
+		}
+		String zipcode = zipCodeEmInput.getText();
+
+		String gender;
+		RadioButton selectedRadioButton = (RadioButton) genderToggleGroupEm.getSelectedToggle();
+		if (selectedRadioButton == null) {
+			gender = "";
+		} else {
+			gender = selectedRadioButton.getText();
+		}
+
+		System.out.println("Adding employee to db: ");
+		System.out.println("\t" + firstName + " " + lastName + " " + streetAddress + " " + city + " " + state + " "
+				+ zipcode + " " + gender + " ");
+		rsdb.insertIntoEmployeeTable(firstName, lastName, streetAddress, city, state, zipcode, gender);
+
+		System.out.println("label text: " + addEmployeeLabel.getText());
+		addEmployeeLabel.setText("Employee added with values: " + firstName + ", " + lastName + ", " + streetAddress
 				+ ", " + city + ", " + state + ", " + zipcode + ", " + gender + " ");
 	}
 
@@ -215,29 +306,92 @@ public class RetailSystemController implements Initializable {
 
 	@FXML
 	private void handleListAllCustomers(ActionEvent event) throws IOException {
-		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
-		String[] dataValues = { "1", "2", "3", "4", "5", "6", "7" };
-		populateTable(headerValues, dataValues);
 		System.out.println("List all customers");
+
+		String[] headerValues = { "First Name", "Last Name", "StreetAddress", "City", "State", "Zipcode", "Gender" };
+		populateTableColumns(headerValues);
+
+		try {
+
+			ResultSet customerData = rsdb.getTableData("Customer");
+
+			while (customerData.next()) {
+				String firstName = customerData.getString("FirstName");
+				String lastName = customerData.getString("LastName");
+				String streetAddress = customerData.getString("StreetAddress");
+				String city = customerData.getString("City");
+				String state = customerData.getString("State");
+				String zipcode = customerData.getString("Zipcode");
+				String gender = customerData.getString("Gender");
+				String[] dataValues = { firstName, lastName, streetAddress, city, state, zipcode, gender };
+
+				populateTableDataRow(dataValues);
+
+				System.out.println("found: " + firstName + " " + lastName);
+			}
+		} catch (Exception e) {
+
+		}
 	}
 
 	@FXML
 	private void handleListAllEmployees(ActionEvent event) throws IOException {
+		System.out.println("List all employees");
+
 		String[] headerValues = { "First Name", "Last Name", "Street Address", "City", "State", "Zipcode", "Gender" };
-		String[] dataValues = { "11", "22", "33", "4", "5", "6", "7" };
-		populateTable(headerValues, dataValues);
-		System.out.println("List all customers");
+		populateTableColumns(headerValues);
+
+		try {
+
+			ResultSet employeeData = rsdb.getTableData("Employee");
+
+			while (employeeData.next()) {
+				String firstName = employeeData.getString("FirstName");
+				String lastName = employeeData.getString("LastName");
+				String streetAddress = employeeData.getString("StreetAddress");
+				String city = employeeData.getString("City");
+				String state = employeeData.getString("State");
+				String zipcode = employeeData.getString("Zipcode");
+				String gender = employeeData.getString("Gender");
+				String[] dataValues = { firstName, lastName, streetAddress, city, state, zipcode, gender };
+
+				populateTableDataRow(dataValues);
+
+				System.out.println("found: " + firstName + " " + lastName);
+			}
+		} catch (Exception e) {
+
+		}
 	}
 
 	@FXML
 	private void handleListAllMerchandise(ActionEvent event) throws IOException {
-		String[] headerValues = { "Name", "Price", "Description" };
-		String[] dataValues = { "1", "2", "3" };
-		populateTable(headerValues, dataValues);
 		System.out.println("List all merchandise");
+
+		String[] headerValues = { "Name", "Price", "Description" };
+		populateTableColumns(headerValues);
+
+		try {
+
+			ResultSet merchandiseData = rsdb.getTableData("Merchandise");
+
+			while (merchandiseData.next()) {
+				String name = merchandiseData.getString("Name");
+				String price = merchandiseData.getString("Price");
+				String description = merchandiseData.getString("Description");
+				String[] dataValues = { name, price, description };
+
+				populateTableDataRow(dataValues);
+
+				System.out.println("found: " + name + " " + price);
+			}
+		} catch (Exception e) {
+
+		}
+
 	}
 
-	private void populateTable(String[] headerValues, String[] dataValues) {
+	private void populateTableColumns(String[] headerValues) {
 		table.getItems().clear();
 		table.getColumns().clear();
 		table.setPlaceholder(new Label("Loading..."));
@@ -245,18 +399,14 @@ public class RetailSystemController implements Initializable {
 		for (int column = 0; column < headerValues.length; column++) {
 			table.getColumns().add(createColumn(column, headerValues[column]));
 		}
+	}
 
-		// Add additional columns if necessary:
-		for (int columnIndex = table.getColumns().size(); columnIndex < dataValues.length; columnIndex++) {
-			table.getColumns().add(createColumn(columnIndex, ""));
-		}
-		// Add data to table:
+	private void populateTableDataRow(String[] dataValues) {
 		ObservableList<StringProperty> data = FXCollections.observableArrayList();
 		for (String value : dataValues) {
 			data.add(new SimpleStringProperty(value));
 		}
 		table.getItems().add(data);
-
 	}
 
 	private TableColumn<ObservableList<StringProperty>, String> createColumn(final int columnIndex,
